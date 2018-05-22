@@ -1,0 +1,36 @@
+<% include ./partials/header %>
+
+<% blogs.forEach(blog => { %>
+  <div class="container mb-5" style="border: 1px solid rgb(224, 224, 224); box-shadow: 1px 1px 2px rgb(230, 230, 230); padding: 20px;">
+    <div class="row">
+      <div class="col-md-3 col-sm-12">
+        <div class="text-center">
+          <h5>Username</h5>
+          <img src="https://pbs.twimg.com/media/CRySIhXWUAA_2Qy.png" alt="" class="img-fluid img-thumbnail rounded-circle" style="width: 120px; height: 120px; box-shadow: 1px 1px 2px rgb(230, 230, 230)">
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-12">
+        <div>
+          <h5 class="text-center"><%= blog.title %></h5>
+          <p><%= blog.post.substring(0,100) %></p>
+          <hr>
+          <span> <%= blog.created_At.toDateString() %> </span>
+        </div>
+        <div class="text-center mt-2">
+          <img src="<%= blog.image %>" alt="#" class="img-fluid img-thumbnail rounded" style="width: 60%; height: 300px; box-shadow: 1px 1px 2px rgb(230, 230, 230)">
+        </div>
+        <div>
+          <div class="row mt-3">
+            <div class="col-md-2"></div>
+            <div class="col-md-9">
+                <button class="btn btn-outline-secondary ml-4 mr-3"><i class="far fa-thumbs-up"></i> Like</button>
+                <button class="btn btn-info"><a href="/blog/<%= blog._id %>" class="text-white">Read More</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% }) %>
+
+<% include ./partials/footer %>

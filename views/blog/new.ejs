@@ -1,0 +1,22 @@
+<% include ../partials/header %>
+
+<div class="container">
+  <div class="col-md-8 col-sm-12 mx-auto">
+    <form action="/blog", method="POST">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" placeholder="Title" id='title' name='blog[title]'>
+      </div>
+      <div class="form-group">
+        <label for="image">Image URL</label>
+        <input type="text" class="form-control" placeholder="Title" id='image' name='blog[image]'>
+      </div>
+      <div class="form-group">
+        <label for="post">Post</label>
+        <textarea class="form-control" id="post" rows="3" placeholder="Say here" name='blog[post]'></textarea>
+      </div>
+      <input type="submit" class="btn btn-success btn-block" value='Add Post'>
+    </form>
+  </div>
+</div>
+<% include ../partials/footer %>

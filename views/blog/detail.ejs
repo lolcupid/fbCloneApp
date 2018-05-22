@@ -1,0 +1,52 @@
+<% include ../partials/header %>
+
+  <div class="container mb-5" style="border: 1px solid rgb(224, 224, 224); box-shadow: 1px 1px 2px rgb(230, 230, 230); padding: 20px;">
+    <div class="row justify-content-center">
+      <div class="col-md-9 col-sm-12">
+        <div>
+          <h5 class="text-center"><%= blog.title %></h5>
+          <p><%= blog.post %></p>
+          <hr>
+          <span> <%= blog.created_At.toDateString() %> </span>
+        </div>
+        <div class="text-center mt-2">
+          <img src="<%= blog.image %>" alt="#" class="img-fluid img-thumbnail rounded" style="width: 80%; height: 400px; box-shadow: 1px 1px 2px rgb(230, 230, 230)">
+        </div>
+        <div>
+          <div class="row justify-content-center mt-3">
+            <div class="col-md-6">
+              <div class="text-center">
+                <a href="/blog/<%= blog._id %>/comment/new" class="btn btn-outline-secondary mr-3">Comment</a>
+                <a href="/blog/<%= blog._id %>/edit" class="btn btn-outline-success mr-3"><i class="far fa-edit"></i></a>
+                <form action="/blog/<%= blog._id %>?_method=DELETE" method="POST" style="display: inline">
+                  <button type="submit" class="btn btn-outline-danger mr-3"><i class="far fa-trash-alt"></i></button>
+                </form>
+              </div>
+              <a href="/blog" class="btn btn-outline-secondary btn-block mt-3"><i class="fas fa-chevron-circle-left"></i> Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mb-5" style="border: 1px solid rgb(224, 224, 224); box-shadow: 1px 1px 2px rgb(230, 230, 230); padding: 20px;">
+    <% blog.comments.forEach((comment) => { %>
+      <div class="row justify-content-center">
+          <div class="col-md-9 col-sm-12">
+            <div class="d-flex align-items-center">
+                <img src="https://pbs.twimg.com/media/CRySIhXWUAA_2Qy.png" alt="" class="img-fluid img-thumbnail rounded-circle" style="width: 50px; height: 50px; box-shadow: 1px 1px 2px rgb(230, 230, 230)">
+              <p class="ml-4"><strong><%= comment.author %></strong></p>
+              <span class="offset-8"><%= comment.created_At.toDateString() %></span>
+            </div>
+          </div>
+          <div class="col-md-9 col-sm-12 mt-3">
+            <p class="offset-2"><%= comment.ment %></p>
+            <hr>
+          </div>
+        </div>
+    <% }) %>
+  </div>
+
+
+<% include ../partials/footer %>

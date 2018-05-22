@@ -1,0 +1,18 @@
+<% include ../partials/header %>
+
+<div class="container">
+  <div class="col-md-8 col-sm-12 mx-auto">
+    <form action="/blog/<%= blogs._id %>/comment", method="POST">
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" class="form-control" placeholder="author" id='author' name='comment[author]'>
+      </div>
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea type="text" class="form-control" placeholder="comment here!" id='comment' name='comment[ment]' cols="30" rows="5"></textarea>
+      </div>
+      <input type="submit" class="btn btn-success btn-block" value='Ment!'>
+    </form>
+  </div>
+</div>
+<% include ../partials/footer %>
