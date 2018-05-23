@@ -40,6 +40,17 @@ router.post('/',isLoggedIn, (req, res) => {
   })
 })
 
+// delete comment
+router.delete('/:commentid', isLoggedIn, (req, res) => {
+  Comment.findByIdAndRemove(req.params.commentid, (err, foundcomment) => {
+        if(err) {
+          console.log(err);
+        } else {
+          res.redirect('/blog/'+req.params.id);
+        }
+      })
+})
+
 // Middleware to prevent routing to secret page
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()){

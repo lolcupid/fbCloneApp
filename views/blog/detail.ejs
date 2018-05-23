@@ -33,20 +33,25 @@
   <div class="container mb-5" style="border: 1px solid rgb(224, 224, 224); box-shadow: 1px 1px 2px rgb(230, 230, 230); padding: 20px;">
     <% blog.comments.forEach((comment) => { %>
       <div class="row justify-content-center">
-          <div class="col-md-9 col-sm-12">
+          <div class="col-md-10 col-sm-12">
             <div class="d-flex align-items-center">
                 <img src="<%= comment.author.userimage %>" alt="" class="img-fluid img-thumbnail rounded-circle" style="width: 50px; height: 50px; box-shadow: 1px 1px 2px rgb(230, 230, 230)">
               <p class="ml-4"><strong><%= comment.author.username %></strong></p>
-              <span class="offset-8"><%= comment.created_At.toDateString() %></span>
+              <span class="offset-6"><%= comment.created_At.toDateString() %></span>
+              <!-- Delete Button for comments -->
+              <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+                <form action="/blog/<%= blog._id %>/comment/<%= comment._id %>?_method=DELETE" method="post" style="display: inline">
+                  <button type="submit" class="btn btn-outline-danger ml-5"><i class="far fa-trash-alt"></i></button>
+                </form>
+              <% } %>
             </div>
           </div>
-          <div class="col-md-9 col-sm-12 mt-3">
-            <p class="offset-2"><%= comment.ment %></p>
+          <div class="col-md-10 col-sm-12 mt-3">
+            <p class="offset-1"><%= comment.ment %></p>
             <hr>
           </div>
         </div>
     <% }) %>
   </div>
-
 
 <% include ../partials/footer %>
