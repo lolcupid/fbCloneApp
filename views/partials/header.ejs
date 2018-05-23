@@ -28,16 +28,27 @@
                 <a class="nav-link" href="/blog/new">Poster</a>
             </li>
           </ul>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item ml-auto">
-              <a class="nav-link" href="#">Sign-In</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sign-Out</a>
-            </li>
+          <ul class="navbar-nav ml-auto d-flex align-items-center">
+            <% if(!currentUser) { %>
+              <li class="nav-item ml-auto">
+                <a class="nav-link" href="/login">Sign-In</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/register">Register</a>
+              </li>
+            <% } else { %>
+              <li class="nav-item">
+                <a class="nav-link active" href="#"><%= currentUser.username%></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <img src="<%= currentUser.userimage %>" alt="#" style="width:40px; height:40px; border-radius: 50%; background-position:center; background-size:contain">
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ml-5" href="/logout">LogOut</a>
+              </li>
+            <% } %>
           </ul>
         </div>
       </nav>

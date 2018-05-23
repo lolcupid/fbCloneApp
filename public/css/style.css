@@ -1,0 +1,25 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+ 
+.homeBackground {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background:rgb(170, 55, 55);
+}
+
+
+#homeLogin{
+  background:rgba(255, 255, 255, 0.1);
+  padding: 2em 2.5em 2em;
+  border:#ccc 1px solid;
+  z-index: 1;
+  width: 60%;
+}
