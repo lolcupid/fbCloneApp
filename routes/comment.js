@@ -25,6 +25,11 @@ router.post('/',isLoggedIn, (req, res) => {
         if(err) {
           console.log(err);
         } else {
+          // add user's id, name, image to comment
+          newComment.author.id = req.user._id;
+          newComment.author.username = req.user.username;
+          newComment.author.userimage = req.user.userimage;
+          newComment.save();
           // link b/t blog and comment
           blogs.comments.push(newComment);
           blogs.save();
