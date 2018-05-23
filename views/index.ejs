@@ -5,8 +5,8 @@
     <div class="row">
       <div class="col-md-3 col-sm-12">
         <div class="text-center">
-          <h5>Username</h5>
-          <img src="https://pbs.twimg.com/media/CRySIhXWUAA_2Qy.png" alt="" class="img-fluid img-thumbnail rounded-circle" style="width: 120px; height: 120px; box-shadow: 1px 1px 2px rgb(230, 230, 230)">
+          <h5><%= blog.user.username %></h5>
+          <img src="<%= blog.user.userimage %>" alt="" class="img-fluid img-thumbnail rounded-circle" style="width: 120px; height: 120px; box-shadow: 1px 1px 2px rgb(230, 230, 230)">
         </div>
       </div>
       <div class="col-md-9 col-sm-12">
@@ -23,7 +23,7 @@
           <div class="row mt-3">
             <div class="col-md-2"></div>
             <div class="col-md-9">
-                <button class="btn btn-outline-secondary ml-4 mr-3"><i class="far fa-thumbs-up"></i> Like</button>
+                <button class="btn btn-outline-secondary ml-4 mr-3 like"><i class="far fa-thumbs-up"></i> Like</button>
                 <button class="btn btn-info"><a href="/blog/<%= blog._id %>" class="text-white">Read More</a></button>
             </div>
           </div>

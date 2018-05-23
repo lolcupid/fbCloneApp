@@ -21,8 +21,18 @@ router.get('/new',isLoggedIn, (req, res) => {
 
 // Add new post
 router.post('/',isLoggedIn, (req, res) => {
-  req.body.blog.post = req.sanitize(req.body.blog.post);
-  Blog.create(req.body.blog, (err, addBlog) => {
+  req.body.post = req.sanitize(req.body.post);
+  const title = req.body.title;
+  const image = req.body.image;
+  const post = req.body.post;
+  const user = {
+    id: req.user._id,
+    username: req.user.username,
+    userimage: req.user.userimage
+  };
+  const newFormattedBlog = {title:title, image:image, post:post, user:user};
+
+  Blog.create(newFormattedBlog, (err, addBlog) => {
     if(err) {
       res.redirect('/blog');
     } else {
