@@ -17,7 +17,8 @@ const blogRoute = require('./routes/blog');
 const commentRoute = require('./routes/comment');
 
 const app         = express();
-mongoose.connect('mongodb://cupid:cupid451992@ds237868.mlab.com:37868/tutorial');
+const url = process.env.DATABASEURL;
+mongoose.connect(url);
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
