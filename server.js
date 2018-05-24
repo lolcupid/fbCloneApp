@@ -1,6 +1,7 @@
 const express                  = require('express'),
       methodOverride           = require('method-override'),
       expressSanitizer         = require('express-sanitizer'),
+      port                     = process.env.PORT || 3000,
       passport                 = require('passport'),
       AuthUser                 = require('./models/user.js'),
       LocalStrategy            = require('passport-local'),
@@ -51,6 +52,6 @@ app.use('/blog', blogRoute);
 app.use('/blog/:id/comment', commentRoute);
 app.use(authRoute);
 
-app.listen(3000, () => {
-  console.log(`Server is running at port 3000`);
+app.listen(port, () => {
+  console.log(`Server is running at port ${port}`);
 });
