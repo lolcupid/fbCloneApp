@@ -55,10 +55,14 @@ router.get('/:id',isLoggedIn, (req, res) => {
 // Edit Page
 router.get('/:id/edit',isLoggedIn, (req, res) => {
   Blog.findById(req.params.id, (err, editBlog) => {
-    if(err) {
-      res.redirect('/blog');
+    if(editBlog.user.id.equals(req.user._id)) {
+      if(err) {
+        res.redirect('/blog');
+      } else {
+        res.render('./blog/edit', {blog: editBlog});
+      }
     } else {
-      res.render('./blog/edit', {blog: editBlog});
+      res.redirect('/blog/'+req.params.id);
     }
   })
 });
@@ -66,13 +70,17 @@ router.get('/:id/edit',isLoggedIn, (req, res) => {
 // Update data from DB
 router.put('/:id',isLoggedIn, (req, res) => {
   req.body.blog.post = req.sanitize(req.body.blog.post);
-  Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
-    if(err) {
-      res.redirect('/blog');
-    } else {
-      res.redirect('/blog/' + req.params.id);
-    }
-  })
+  if(editBlog.user.id.equals(req.user._id)) {
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
+      if(err) {
+        res.redirect('/blog');
+      } else {
+        res.redirect('/blog/' + req.params.id);
+      }
+    })
+  } else {
+    res.redirect('/blog');
+  }
 });
 
 // Delete Blog

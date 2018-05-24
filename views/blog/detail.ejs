@@ -17,10 +17,15 @@
             <div class="col-md-6">
               <div class="text-center">
                 <a href="/blog/<%= blog._id %>/comment/new" class="btn btn-outline-secondary mr-3">Comment</a>
-                <a href="/blog/<%= blog._id %>/edit" class="btn btn-outline-success mr-3"><i class="far fa-edit"></i></a>
-                <form action="/blog/<%= blog._id %>?_method=DELETE" method="POST" style="display: inline">
-                  <button type="submit" class="btn btn-outline-danger mr-3"><i class="far fa-trash-alt"></i></button>
-                </form>
+
+                <!-- Need authorization to edit or delete blog post -->
+                <% if(currentUser && blog.user.id.equals(currentUser._id)) { %>
+                  <a href="/blog/<%= blog._id %>/edit" class="btn btn-outline-success mr-3"><i class="far fa-edit"></i></a>
+                  <form action="/blog/<%= blog._id %>?_method=DELETE" method="POST" style="display: inline">
+                    <button type="submit" class="btn btn-outline-danger mr-3"><i class="far fa-trash-alt"></i></button>
+                  </form>
+                <% } %>
+                <!--  -->
               </div>
               <a href="/blog" class="btn btn-outline-secondary btn-block mt-3"><i class="fas fa-chevron-circle-left"></i> Back</a>
             </div>
